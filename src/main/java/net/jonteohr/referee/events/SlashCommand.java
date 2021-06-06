@@ -4,7 +4,7 @@ import net.dv8tion.jda.api.entities.Invite;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.InteractionHook;
-import net.jonteohr.referee.Bot;
+import net.jonteohr.referee.core.Bot;
 import net.jonteohr.referee.core.Code;
 
 public class SlashCommand extends ListenerAdapter {

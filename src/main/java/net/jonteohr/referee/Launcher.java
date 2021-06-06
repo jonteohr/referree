@@ -1,5 +1,6 @@
 package net.jonteohr.referee;
 
+import net.jonteohr.referee.core.Bot;
 import net.jonteohr.referee.sql.DataSave;
 
 import javax.security.auth.login.LoginException;
