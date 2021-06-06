@@ -9,7 +9,6 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>Referee</name>
-  <!-- FIXME change it to the project's website -->
   <url>https://discord.com/api/oauth2/authorize?client_id=710559912614428693&amp;permissions=268437505&amp;scope=bot%20applications.commands</url>
 
   <properties>
@@ -44,6 +43,12 @@
           <artifactId>opus-java</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.25</version>
     </dependency>
   </dependencies>
 
@@ -91,5 +96,15 @@
         </plugin>
       </plugins>
     </pluginManagement>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>8</source>
+                  <target>8</target>
+              </configuration>
+          </plugin>
+      </plugins>
   </build>
 </project>

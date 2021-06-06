@@ -4,6 +4,8 @@ import net.dv8tion.jda.api.entities.Invite;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.InteractionHook;
+import net.jonteohr.referee.Bot;
+import net.jonteohr.referee.core.Code;
 
 public class SlashCommand extends ListenerAdapter {
 	@Override
@@ -25,16 +27,43 @@ public class SlashCommand extends ListenerAdapter {
 		InteractionHook hook = e.getHook();
 		hook.setEphemeral(true);
 
-		// TODO Check if user already has registered referral code for this guild
+		boolean exists = false;
+		Code userCode = null;
 
-		Invite invite = e.getGuild().getDefaultChannel().createInvite()
-				.setTemporary(false)
-				.setMaxAge(0)
-				.setUnique(true)
-				.complete();
+		for(Code code : Bot.codeList) {
+			if(code.getUserId().equalsIgnoreCase(e.getUser().getId()) && code.getGuildId().equalsIgnoreCase(e.getGuild().getId())) {
+				exists = true;
+				userCode = new Code(
+						code.getCode(),
+						e.getGuild().getId(),
+						code.getUserId(),
+						code.getUses()
+				);
+				break;
+			}
+		}
 
-		// TODO save in DB who the owner of this code is
+		if(!exists) { // The user does not have a referral code yet!
+			Invite invite = e.getGuild().getDefaultChannel().createInvite()
+					.setTemporary(false)
+					.setMaxAge(0)
+					.setUnique(true)
+					.complete();
 
-		hook.sendMessage("Here is your personalized invite link: https://discord.gg/" + invite.getCode()).queue();
+			userCode = new Code(
+					invite.getCode(),
+					e.getGuild().getId(),
+					e.getUser().getId(),
+					invite.getUses()
+			);
+
+			Bot.codeList.add(userCode);
+
+			hook.sendMessage("Here is your personalized invite link: https://discord.gg/" + userCode.getCode()).queue();
+			return;
+		}
+
+		hook.sendMessage("Here is your current referral code: " + userCode.getCode() + " (https://discord.gg/" + userCode.getCode() + ").\n" +
+				"You currently got " + userCode.getUses() + " referrals.").queue();
 	}
 }

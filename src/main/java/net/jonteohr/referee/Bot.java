@@ -6,14 +6,18 @@ import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
+import net.jonteohr.referee.core.Code;
 import net.jonteohr.referee.events.SlashCommand;
 
 import javax.security.auth.login.LoginException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class Bot {
 	private static JDA jda;
+
+	public static List<Code> codeList = new ArrayList<>();
 
 	public void start() throws LoginException {
 		Collection<GatewayIntent> intents = new ArrayList<>();
@@ -36,6 +40,8 @@ public class Bot {
 
 			commandList.queue();
 		}
+
+		// TODO Fetch all data from database and store into codeList
 	}
 
 	public static JDA getJDA() {
