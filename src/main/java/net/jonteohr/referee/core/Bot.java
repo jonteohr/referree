@@ -6,7 +6,6 @@ import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
-import net.jonteohr.referee.Configuration;
 import net.jonteohr.referee.events.SlashCommand;
 
 import javax.security.auth.login.LoginException;

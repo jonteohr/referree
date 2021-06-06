@@ -1,6 +1,6 @@
 package net.jonteohr.referee.sql;
 
-import net.jonteohr.referee.Configuration;
+import net.jonteohr.referee.core.Configuration;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
