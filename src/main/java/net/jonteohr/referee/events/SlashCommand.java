@@ -25,6 +25,8 @@ public class SlashCommand extends ListenerAdapter {
 		InteractionHook hook = e.getHook();
 		hook.setEphemeral(true);
 
+		// TODO Check if user already has registered referral code for this guild
+
 		Invite invite = e.getGuild().getDefaultChannel().createInvite()
 				.setTemporary(false)
 				.setMaxAge(0)
